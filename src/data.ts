@@ -10,9 +10,9 @@ export const PHOTOS: string[] = DRIVE_IDS.map(
 
 export type Video = { id: string; title: string };
 export const VIDEOS: Video[] = [
+  { id: "5G7nn08SaJU", title: "New video" },
   { id: "upWgTnzEkkA", title: "Charles Bukowski on Being Alone" },
   { id: "V-Mme1qvD7Q", title: "Capernaum - Zain" },
-  { id: "eNJo_0P43D4", title: "Best Acting Of All Time" },
   { id: "t_IB3bR-lIo", title: "I am losing My mind" },
   { id: "mfjs0uA2qwo", title: "Eyes" },
   { id: "jt-ivFUixpM", title: "Smile - إبتسامة" },
