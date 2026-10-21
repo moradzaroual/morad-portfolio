@@ -23,3 +23,12 @@
   .no-print { display: none !important; }
   body { background: #fff; }
 }
+
+@keyframes slide-progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+@keyframes slide-progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}

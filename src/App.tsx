@@ -1,8 +1,9 @@
-﻿import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, Mail, Linkedin, Printer, Play, ImageOff } from "lucide-react";
 import { PHOTOS, PROJECTS, VIDEOS } from "./data";
 import Lightbox, { type Slide } from "./components/Lightbox";
+import Slideshow from "./components/Slideshow";
 
 const EASE = [0.2, 0.7, 0.2, 1] as const;
 
@@ -37,7 +38,7 @@ function Nav() {
     addEventListener("scroll", f, { passive: true });
     return () => removeEventListener("scroll", f);
   }, []);
-  const links = [["#work", "Work"], ["#photos", "Photography"], ["#videos", "Videos"], ["#about", "About"], ["#contact", "Contact"]];
+  const links = [["#work", "Work"], ["#photos", "Photography"], ["#videos", "Videos"], ["#slides", "Slideshow"], ["#about", "About"], ["#contact", "Contact"]];
   return (
     <nav className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 no-print ${scrolled ? "bg-cream/85 shadow-[0_1px_0_#e2ded3] backdrop-blur-md" : ""}`}>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
@@ -299,6 +300,7 @@ export default function App() {
       <Projects />
       <Photos />
       <Videos />
+      <Slideshow />
       <About />
       <Contact />
       <Footer />
