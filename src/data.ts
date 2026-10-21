@@ -10,7 +10,7 @@ export const PHOTOS: string[] = DRIVE_IDS.map(
 
 export type Video = { id: string; title: string };
 export const VIDEOS: Video[] = [
-  { id: "5G7nn08SaJU", title: "New video" },
+  { id: "5G7nn08SaJU", title: "There are things that maybe you would like to see" },
   { id: "upWgTnzEkkA", title: "Charles Bukowski on Being Alone" },
   { id: "V-Mme1qvD7Q", title: "Capernaum - Zain" },
   { id: "t_IB3bR-lIo", title: "I am losing My mind" },
