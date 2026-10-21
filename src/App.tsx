@@ -275,10 +275,10 @@ function Contact() {
         <p className="text-xs uppercase tracking-[.2em] text-muted">Contact</p>
         <h2 className="mb-10 mt-3 font-display text-5xl font-semibold tracking-tight md:text-6xl">Let's build <em className="italic text-teal">something.</em></h2>
         <div className="no-print flex flex-wrap gap-4">
-          <a href="mailto:your@email.com" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ink px-6 py-3 font-bold text-cream transition hover:-translate-y-1">
-            <Mail className="h-4 w-4" /> your@email.com
+          <a href="mailto:morad.zaroual@hotmail.com" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ink px-6 py-3 font-bold text-cream transition hover:-translate-y-1">
+            <Mail className="h-4 w-4" /> morad.zaroual@hotmail.com
           </a>
-          <a href="#" className="inline-flex min-h-12 items-center gap-2 rounded-full border-[1.5px] border-ink px-6 py-3 font-bold transition hover:-translate-y-1 hover:bg-ink hover:text-cream">
+          <a href="https://www.linkedin.com/in/moradzaroual" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-full border-[1.5px] border-ink px-6 py-3 font-bold transition hover:-translate-y-1 hover:bg-ink hover:text-cream">
             <Linkedin className="h-4 w-4" /> LinkedIn
           </a>
           <button onClick={() => window.print()} className="inline-flex min-h-12 items-center gap-2 rounded-full border-[1.5px] border-ink px-6 py-3 font-bold transition hover:-translate-y-1 hover:bg-ink hover:text-cream">
