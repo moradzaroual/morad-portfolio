@@ -12,7 +12,6 @@ export type Video = { id: string; title: string };
 export const VIDEOS: Video[] = [
   { id: "upWgTnzEkkA", title: "Charles Bukowski on Being Alone" },
   { id: "V-Mme1qvD7Q", title: "Capernaum - Zain" },
-  { id: "JJRxKunm61Y", title: "Horses of God | Hans Zimmer - STAY" },
   { id: "eNJo_0P43D4", title: "Best Acting Of All Time" },
   { id: "t_IB3bR-lIo", title: "I am losing My mind" },
   { id: "mfjs0uA2qwo", title: "Eyes" },
