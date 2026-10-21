@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, Mail, Linkedin, Printer, Play, ImageOff } from "lucide-react";
 import { PHOTOS, PROJECTS, VIDEOS } from "./data";
+import { THUMB_IDS } from "./thumbIds";
 import Lightbox, { type Slide } from "./components/Lightbox";
 import Slideshow from "./components/Slideshow";
 
@@ -38,9 +39,16 @@ function Nav() {
     addEventListener("scroll", f, { passive: true });
     return () => removeEventListener("scroll", f);
   }, []);
-  const links = [["#work", "Work"], ["#photos", "Photography"], ["#videos", "Videos"], ["#slides", "Slideshow"], ["#about", "About"], ["#contact", "Contact"]];
+  const links = [
+    ["#work", "Work"],
+    ["#photos", "Photography"],
+    ["#videos", "Videos"],
+    ["#slides", "Slideshow"],
+    ["#about", "About"],
+    ["#contact", "Contact"],
+  ];
   return (
-    <nav className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 no-print ${scrolled ? "bg-cream/85 shadow-[0_1px_0_#e2ded3] backdrop-blur-md" : ""}`}>
+    <nav className={`no-print fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? "bg-cream/85 shadow-[0_1px_0_#e2ded3] backdrop-blur-md" : ""}`}>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
         <a href="#" className="font-display text-2xl font-semibold">Morad<span className="text-teal">.</span></a>
         <div className="hidden gap-7 text-sm md:flex">
@@ -65,7 +73,7 @@ function Hero() {
       <motion.div style={{ y: y2 }} className="absolute -bottom-24 -left-20 h-[360px] w-[360px] rounded-full bg-[#fcd34d]/40 blur-[70px]" />
       <div className="relative mx-auto max-w-6xl px-6">
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="text-xs uppercase tracking-[.2em] text-muted">
-          Growth systems Â· Web development Â· Agadir
+          Growth systems · Web development · Agadir
         </motion.p>
         <h1 className="mt-5 font-display text-6xl font-semibold leading-[1.02] md:text-8xl">
           {words.map((w, i) => (
@@ -107,13 +115,21 @@ function Projects() {
               <motion.article
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.6, ease: EASE }}
-                className="overflow-hidden rounded-3xl border border-[#e2ded3] bg-white shadow-sm hover:shadow-2xl"
+                className="group overflow-hidden rounded-3xl border border-[#e2ded3] bg-white shadow-sm hover:shadow-2xl"
               >
                 <div
-                  className="flex aspect-[4/3] items-end p-6 font-display text-3xl italic text-white"
+                  className="relative flex aspect-[4/3] items-end overflow-hidden p-6 font-display text-3xl italic text-white"
                   style={{ background: `linear-gradient(135deg, ${p.from}, ${p.to})` }}
                 >
-                  {p.name}
+                  {THUMB_IDS[p.key] && (
+                    <img
+                      src={`https://lh3.googleusercontent.com/d/${THUMB_IDS[p.key]}=w800`}
+                      alt={p.name}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                    />
+                  )}
+                  <span className="relative z-10 drop-shadow-lg">{p.name}</span>
                 </div>
                 <div className="p-6">
                   <h3 className="font-display text-2xl font-semibold">{p.title}</h3>
@@ -123,8 +139,8 @@ function Projects() {
                       <span key={t} className="rounded-full border border-[#e2ded3] bg-cream px-3 py-1 text-xs">{t}</span>
                     ))}
                   </div>
-                  <a href={p.url} target="_blank" rel="noopener noreferrer" className="group inline-flex min-h-11 items-center gap-2 font-bold">
-                    Visit website <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  <a href={p.url} target="_blank" rel="noopener noreferrer" className="group/link inline-flex min-h-11 items-center gap-2 font-bold">
+                    Visit website <ArrowUpRight className="h-4 w-4 transition group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
                   </a>
                 </div>
               </motion.article>
@@ -149,10 +165,7 @@ function Photos() {
         {PHOTOS.length === 0 && (
           <div className="flex items-start gap-3 rounded-2xl border border-dashed border-muted/50 p-6 text-muted">
             <ImageOff className="mt-0.5 h-5 w-5 shrink-0" />
-            <p>
-              Photos are not loading yet. Create a <code>.env</code> file with <code>VITE_R2_BASE</code> set to your
-              Cloudflare R2 public URL, then restart <code>npm run dev</code>.
-            </p>
+            <p>No photos added yet. Add their IDs to src/photoIds.ts.</p>
           </div>
         )}
 
@@ -200,11 +213,7 @@ function Videos() {
         <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {VIDEOS.map((v, i) => (
             <Reveal key={v.id}>
-              <button
-                onClick={() => setOpen(i)}
-                aria-label={`Play ${v.title}`}
-                className="group block w-full text-left"
-              >
+              <button onClick={() => setOpen(i)} aria-label={`Play ${v.title}`} className="group block w-full text-left">
                 <div className="relative aspect-video overflow-hidden rounded-2xl bg-ink">
                   <img
                     src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`}
@@ -265,7 +274,7 @@ function Contact() {
       <Reveal className="mx-auto max-w-6xl">
         <p className="text-xs uppercase tracking-[.2em] text-muted">Contact</p>
         <h2 className="mb-10 mt-3 font-display text-5xl font-semibold tracking-tight md:text-6xl">Let's build <em className="italic text-teal">something.</em></h2>
-        <div className="flex flex-wrap gap-4 no-print">
+        <div className="no-print flex flex-wrap gap-4">
           <a href="mailto:your@email.com" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ink px-6 py-3 font-bold text-cream transition hover:-translate-y-1">
             <Mail className="h-4 w-4" /> your@email.com
           </a>
@@ -283,10 +292,10 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="flex flex-wrap justify-between gap-3 border-t border-[#e2ded3] px-6 py-10 text-sm text-muted no-print">
+    <footer className="no-print border-t border-[#e2ded3] px-6 py-10 text-sm text-muted">
       <div className="mx-auto flex w-full max-w-6xl flex-wrap justify-between gap-3">
-        <span>Â© 2026 Morad</span>
-        <a href="#" className="hover:text-ink">Back to top â†‘</a>
+        <span>© 2026 Morad</span>
+        <a href="#" className="hover:text-ink">Back to top ↑</a>
       </div>
     </footer>
   );
@@ -307,4 +316,3 @@ export default function App() {
     </>
   );
 }
-

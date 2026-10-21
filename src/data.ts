@@ -29,6 +29,7 @@ export const VIDEOS: Video[] = [
 
 export type Project = {
   name: string;
+  key: string;
   title: string;
   desc: string;
   tags: string[];
@@ -37,16 +38,16 @@ export type Project = {
   to: string;
 };
 export const PROJECTS: Project[] = [
-  { name: "MYISTA", title: "Ressources académiques en un seul endroit",
+  { name: "MYISTA", key: "myista", title: "Ressources académiques en un seul endroit",
     desc: "PDFs, supports de cours, vidéos et articles organisés par filière et par module, avec recherche instantanée.",
     tags: ["Web app", "Search", "Content structure"], url: "https://myista.vercel.app/", from: "#0d9488", to: "#134e4a" },
-  { name: "Nadraa", title: "Portail d'actualités en arabe",
+  { name: "Nadraa", key: "nadraa", title: "Portail d'actualités en arabe",
     desc: "Site d'information en RTL avec fil d'actualités en direct, catégories et mise en page éditoriale.",
     tags: ["Arabic RTL", "News layout", "Responsive"], url: "https://nadraa.vercel.app/", from: "#dc2626", to: "#7f1d1d" },
-  { name: "IDMAROUK Négoce", title: "Vitrine d'import de bois",
+  { name: "IDMAROUK Négoce", key: "idmarouk", title: "Vitrine d'import de bois",
     desc: "Présentation d'un distributeur de bois nobles et dérivés : produits, galerie et prise de contact.",
     tags: ["Corporate", "Gallery", "Brand design"], url: "https://idmarouk-website.vercel.app/", from: "#1e3a8a", to: "#c9a227" },
-  { name: "Espirato+", title: "Plateforme sportive en direct",
+  { name: "Espirato+", key: "espirato", title: "Plateforme sportive en direct",
     desc: "Matchs, temps forts et articles pour les fans de football. Projet que je fonde et fais grandir.",
     tags: ["Live sports", "Blog", "Founder"], url: "https://espiratoplus.blogspot.com/", from: "#be123c", to: "#0a0a0a" },
 ];
